@@ -1,0 +1,105 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "name": "Ahmet Yılmaz",
+      "email": "ahmet@demo.com",
+      "role": "USER",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Ahmet"
+    },
+    {
+      "id": "u2",
+      "name": "Ayşe Demir",
+      "email": "ayse@demo.com",
+      "role": "USER",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Ayse"
+    },
+    {
+      "id": "i1",
+      "name": "Dr. Zeynep Kaya",
+      "email": "zeynep@demo.com",
+      "role": "INSTRUCTOR",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Zeynep"
+    },
+    {
+      "id": "i2",
+      "name": "Mehmet Öz",
+      "email": "mehmet@demo.com",
+      "role": "INSTRUCTOR",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Mehmet"
+    },
+    {
+      "id": "a1",
+      "name": "Admin User",
+      "email": "admin@demo.com",
+      "role": "ADMIN",
+      "avatarUrl": "https://api.dicebear.com/7.x/avataaars/svg?seed=Admin"
+    }
+  ],
+  "courses": [
+    {
+      "id": "c1",
+      "title": "Modern Next.js 14 Geliştirme",
+      "description": "App Router, Server Actions ve daha fazlası ile uçtan uca Next.js öğrenin.",
+      "instructorId": "i1",
+      "instructorName": "Dr. Zeynep Kaya",
+      "price": 299.99,
+      "imageUrl": "https://placehold.co/600x400/png?text=Next.js",
+      "category": "Development"
+    },
+    {
+      "id": "c2",
+      "title": "Sıfırdan İleri Seviye TypeScript",
+      "description": "Tip güvenli kod yazmanın inceliklerini keşfedin.",
+      "instructorId": "i2",
+      "instructorName": "Mehmet Öz",
+      "price": 199.99,
+      "imageUrl": "https://placehold.co/600x400/png?text=TypeScript",
+      "category": "Development"
+    },
+    {
+      "id": "c3",
+      "title": "React Performans Optimizasyonu",
+      "description": "Render döngüleri, memoization ve performans ölçümü.",
+      "instructorId": "i1",
+      "instructorName": "Dr. Zeynep Kaya",
+      "price": 149.99,
+      "imageUrl": "https://placehold.co/600x400/png?text=React+Perf",
+      "category": "Development"
+    }
+  ],
+  "enrollments": [
+    {
+      "id": "89kllmy0q",
+      "userId": "u1",
+      "courseId": "c2",
+      "purchasedAt": "2025-12-09T13:45:13.080Z"
+    },
+    {
+      "id": "7nb5emn6p",
+      "userId": "u1",
+      "courseId": "c1",
+      "purchasedAt": "2025-12-09T13:51:43.230Z"
+    },
+    {
+      "id": "uquvrp2wu",
+      "userId": "u2",
+      "courseId": "c1",
+      "purchasedAt": "2025-12-09T13:55:16.349Z"
+    }
+  ],
+  "lessonRequests": [
+    {
+      "id": "215ydyf3u",
+      "userId": "u1",
+      "userName": "Ahmet Yılmaz",
+      "topic": "sadasd",
+      "status": "RESCHEDULED",
+      "instructorId": "i1",
+      "createdAt": "2025-12-09T13:59:59.659Z",
+      "instructorName": "Dr. Zeynep Kaya",
+      "proposedDate": "2025-12-10",
+      "proposedTime": "17:14"
+    }
+  ]
+}
