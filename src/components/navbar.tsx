@@ -7,97 +7,95 @@ export default function Navbar() {
     const { user, login, logout } = useAuth();
 
     return (
-        <nav className="bg-white border-b border-gray-200 shadow-sm">
+        <nav className="sticky top-0 z-50 bg-white/10 backdrop-blur-lg border-b border-white/20 shadow-lg">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16">
-                    <div className="flex">
-                        <div className="flex-shrink-0 flex items-center">
-                            <Link href="/" className="text-2xl font-bold text-indigo-600">
-                                MiniPlatform
-                            </Link>
-                        </div>
-                        <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <div className="flex items-center">
+                        <Link href="/" className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-200">
+                            ✨ MiniPlatform
+                        </Link>
+                        <div className="hidden sm:ml-8 sm:flex sm:space-x-4">
                             <Link
                                 href="/"
-                                className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                className="text-gray-100 hover:text-purple-300 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-white/10"
                             >
-                                Anasayfa
+                                🏠 Anasayfa
                             </Link>
                             <Link
                                 href="/courses"
-                                className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                className="text-gray-100 hover:text-purple-300 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-white/10"
                             >
-                                Eğitimler (Udemy)
+                                📚 Eğitimler
                             </Link>
                             <Link
                                 href="/live-request"
-                                className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                className="text-gray-100 hover:text-purple-300 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-white/10"
                             >
-                                Canlı Ders (Uber)
+                                🎯 Canlı Ders
                             </Link>
                             {user?.role === 'INSTRUCTOR' && (
                                 <Link
                                     href="/instructor/dashboard"
-                                    className="border-transparent text-red-500 hover:border-red-300 hover:text-red-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                    className="text-emerald-300 hover:text-emerald-200 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-emerald-500/10"
                                 >
-                                    Eğitmen Paneli
+                                    👨‍🏫 Eğitmen Paneli
                                 </Link>
                             )}
                             {user?.role === 'USER' && (
                                 <Link
                                     href="/my-courses"
-                                    className="border-transparent text-indigo-500 hover:border-indigo-300 hover:text-indigo-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                    className="text-blue-300 hover:text-blue-200 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-blue-500/10"
                                 >
-                                    Kurslarım
+                                    📖 Kurslarım
                                 </Link>
                             )}
                             {user?.role === 'ADMIN' && (
                                 <Link
                                     href="/admin/dashboard"
-                                    className="border-transparent text-purple-500 hover:border-purple-300 hover:text-purple-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                    className="text-amber-300 hover:text-amber-200 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:bg-amber-500/10"
                                 >
-                                    Admin Paneli
+                                    ⚙️ Admin Paneli
                                 </Link>
                             )}
                         </div>
                     </div>
-                    <div className="flex items-center">
+                    <div className="flex items-center gap-3">
                         {user ? (
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-3">
                                 <div className="flex flex-col text-right">
-                                    <span className="text-sm font-medium text-gray-900">{user.name}</span>
-                                    <span className="text-xs text-indigo-600">{user.role}</span>
+                                    <span className="text-sm font-semibold text-white">{user.name}</span>
+                                    <span className="text-xs text-purple-300 uppercase tracking-wide">{user.role}</span>
                                 </div>
                                 {user.avatarUrl && (
-                                    <img className="h-8 w-8 rounded-full" src={user.avatarUrl} alt="" />
+                                    <img className="h-10 w-10 rounded-full ring-2 ring-purple-400/50 hover:ring-purple-400 transition-all" src={user.avatarUrl} alt={user.name} />
                                 )}
                                 <button
                                     onClick={logout}
-                                    className="ml-4 bg-gray-100 text-gray-700 px-3 py-1 rounded-md text-sm hover:bg-gray-200"
+                                    className="ml-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg text-sm backdrop-blur-sm border border-white/20 transition-all duration-200 hover:scale-105"
                                 >
                                     Çıkış
                                 </button>
                             </div>
                         ) : (
-                            <div className="flex gap-2">
-                                <span className="text-sm text-gray-500 self-center mr-2">Demo Giriş:</span>
+                            <div className="flex gap-2 items-center">
+                                <span className="text-sm text-gray-300 mr-2">Demo:</span>
                                 <button
                                     onClick={() => login('ahmet@demo.com')}
-                                    className="bg-indigo-50 text-indigo-700 px-3 py-1 rounded-md text-sm hover:bg-indigo-100"
+                                    className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105 shadow-lg"
                                 >
-                                    Öğrenci
+                                    👨‍🎓 Öğrenci
                                 </button>
                                 <button
                                     onClick={() => login('zeynep@demo.com')}
-                                    className="bg-green-50 text-green-700 px-3 py-1 rounded-md text-sm hover:bg-green-100"
+                                    className="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105 shadow-lg"
                                 >
-                                    Eğitmen
+                                    👨‍🏫 Eğitmen
                                 </button>
                                 <button
                                     onClick={() => login('admin@demo.com')}
-                                    className="bg-purple-50 text-purple-700 px-3 py-1 rounded-md text-sm hover:bg-purple-100"
+                                    className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 hover:scale-105 shadow-lg"
                                 >
-                                    Admin
+                                    ⚙️ Admin
                                 </button>
                             </div>
                         )}

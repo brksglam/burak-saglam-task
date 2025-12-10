@@ -8,8 +8,8 @@ import { Toaster } from 'react-hot-toast';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Mini Udemy/Uber Clone',
-  description: 'A demo application for coding interview task.',
+  title: 'MiniPlatform - Premium Learning Experience',
+  description: 'Modern course platform with live lesson matching - Built with Next.js 16',
 };
 
 export default function RootLayout({
@@ -18,16 +18,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="tr">
+      <body className={`${inter.className} antialiased`}>
         <AuthProvider>
-          <div className="min-h-screen bg-gray-50">
+          <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
             <Navbar />
-            <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <main>
               {children}
             </main>
           </div>
-          <Toaster position="top-right" />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                background: 'rgba(15, 23, 42, 0.95)',
+                color: '#fff',
+                border: '1px solid rgba(139, 92, 246, 0.3)',
+                backdropFilter: 'blur(10px)',
+              },
+            }}
+          />
         </AuthProvider>
       </body>
     </html>
