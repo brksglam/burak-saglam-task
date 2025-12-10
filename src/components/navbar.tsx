@@ -44,20 +44,12 @@ export default function Navbar() {
                                 </Link>
                             )}
                             {user?.role === 'USER' && (
-                                <>
-                                    <Link
-                                        href="/my-courses"
-                                        className="border-transparent text-indigo-500 hover:border-indigo-300 hover:text-indigo-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                                    >
-                                        Kurslarım
-                                    </Link>
-                                    <Link
-                                        href="/my-requests"
-                                        className="border-transparent text-green-500 hover:border-green-300 hover:text-green-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                                    >
-                                        Ders Taleplerim
-                                    </Link>
-                                </>
+                                <Link
+                                    href="/my-courses"
+                                    className="border-transparent text-indigo-500 hover:border-indigo-300 hover:text-indigo-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                                >
+                                    Kurslarım
+                                </Link>
                             )}
                             {user?.role === 'ADMIN' && (
                                 <Link
@@ -112,6 +104,6 @@ export default function Navbar() {
                     </div>
                 </div>
             </div>
-        </nav>
+        </nav >
     );
 }

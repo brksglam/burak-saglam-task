@@ -90,7 +90,6 @@ export async function approveRequestAction(
 
         db.updateLessonRequest(updatedRequest);
         revalidatePath('/instructor/dashboard');
-        revalidatePath('/my-requests');
 
         return { success: true, message: 'Talep onaylandı ve tarih belirlendi.' };
     } catch (error) {
@@ -122,7 +121,6 @@ export async function rejectRequestAction(
 
         db.updateLessonRequest(updatedRequest);
         revalidatePath('/instructor/dashboard');
-        revalidatePath('/my-requests');
 
         return { success: true, message: 'Talep reddedildi.' };
     } catch (error) {
@@ -156,7 +154,6 @@ export async function proposeRescheduleAction(
 
         db.updateLessonRequest(updatedRequest);
         revalidatePath('/instructor/dashboard');
-        revalidatePath('/my-requests');
 
         return { success: true, message: 'Yeni tarih önerildi.' };
     } catch (error) {

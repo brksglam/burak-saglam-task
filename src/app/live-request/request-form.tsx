@@ -32,16 +32,15 @@ export default function LiveRequestForm({ instructors }: Props) {
             toast.error('Lütfen bir ders konusu giriniz.');
             return;
         }
-        if (!selectedInstructorId) {
-            toast.error('Lütfen bir eğitmen seçiniz.');
-            return;
-        }
+
+        // Note: selectedInstructorId is optional. If empty, the system auto-assigns.
 
         setLoading(true);
-        const toastId = toast.loading('Seçilen eğitmene talep iletiliyor...');
+        const toastId = toast.loading(selectedInstructorId ? 'Seçilen eğitmene talep iletiliyor...' : 'En uygun eğitmen aranıyor...');
 
         try {
-            const result = await requestLessonAction(user.id, topic, selectedInstructorId);
+            // Pass undefined/null to action if selectedInstructorId is empty string
+            const result = await requestLessonAction(user.id, topic, selectedInstructorId || undefined);
 
             if (result.success) {
                 toast.success(result.message, { id: toastId, duration: 5000 });
@@ -78,20 +77,28 @@ export default function LiveRequestForm({ instructors }: Props) {
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
                         <label htmlFor="instructor" className="block text-sm font-semibold text-gray-700 mb-2">
-                            Eğitmen Seç
+                            Eğitmen Seçimi (Opsiyonel)
                         </label>
-                        <select
-                            id="instructor"
-                            required
-                            className="block w-full pl-3 pr-10 py-4 border-gray-300 rounded-xl focus:ring-indigo-500 focus:border-indigo-500 text-lg shadow-sm text-gray-900"
-                            value={selectedInstructorId}
-                            onChange={(e) => setSelectedInstructorId(e.target.value)}
-                        >
-                            <option value="">Bir eğitmen seçiniz...</option>
-                            {instructors.map(inst => (
-                                <option key={inst.id} value={inst.id}>{inst.name} (Online)</option>
-                            ))}
-                        </select>
+                        <div className="relative">
+                            <select
+                                id="instructor"
+                                className="block w-full pl-3 pr-10 py-4 border-gray-300 rounded-xl focus:ring-indigo-500 focus:border-indigo-500 text-lg shadow-sm text-gray-900 appearance-none bg-white"
+                                value={selectedInstructorId}
+                                onChange={(e) => setSelectedInstructorId(e.target.value)}
+                            >
+                                <option value="" className="font-bold text-indigo-700">⚡ Otomatik Eşleştir (Sistem Önerisi)</option>
+                                <option disabled>──────────</option>
+                                {instructors.map(inst => (
+                                    <option key={inst.id} value={inst.id}>{inst.name} (Online)</option>
+                                ))}
+                            </select>
+                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                        </div>
+                        <p className="mt-2 text-xs text-gray-500">
+                            *Otomatik eşleştirme seçildiğinde, sistem size en uygun eğitmeni anında atayacaktır.
+                        </p>
                     </div>
 
                     <div>
@@ -111,7 +118,9 @@ export default function LiveRequestForm({ instructors }: Props) {
 
                     {loading && (
                         <div className="flex flex-col items-center justify-center py-4">
-                            <p className="text-lg font-medium text-indigo-700 animate-pulse">Talep iletiliyor...</p>
+                            <p className="text-lg font-medium text-indigo-700 animate-pulse">
+                                {selectedInstructorId ? 'Talep iletiliyor...' : 'Uygun eğitmen aranıyor...'}
+                            </p>
                         </div>
                     )}
 
@@ -124,8 +133,6 @@ export default function LiveRequestForm({ instructors }: Props) {
                     </button>
                 </form>
 
-                {/* Success/Error messages are now handled via Toast */}
-
                 {!user && (
                     <div className="mt-6 p-4 bg-yellow-50 text-yellow-800 rounded-lg text-sm text-center border border-yellow-200">
                         ⚠️ Canlı ders talebi oluşturmak için lütfen demo hesaplardan biriyle giriş yapın.
@@ -135,3 +142,4 @@ export default function LiveRequestForm({ instructors }: Props) {
         </div>
     );
 }
+
